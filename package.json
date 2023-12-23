@@ -1,0 +1,38 @@
+{
+  "name": "snapsnack",
+  "version": "1.0.0",
+  "description": "SnapSnack a food delivery application like Swiggy (or a clone of Swiggy )",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "npx parcel public/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manu-hn/SnapSnack.git"
+  },
+  "keywords": [
+    "SnapSnack",
+    "Food",
+    "Delivery",
+    "Web",
+    "App",
+    "Parcel"
+  ],
+  "author": "Manu H N",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manu-hn/SnapSnack/issues"
+  },
+  "homepage": "https://github.com/manu-hn/SnapSnack#readme",
+  "devDependencies": {
+    "parcel": "^2.10.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1"
+  }
+}
