@@ -57,9 +57,6 @@ const ResList = () => {
 
             </div>
             <div className="resCards">
-
-
-                {console.log(restaurants)}
                 {
                     filteredRestaurants.map(restaurant => <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}> <RestaurantCard  resCard={restaurant} /> </Link>)
                 }
