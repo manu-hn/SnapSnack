@@ -1,37 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { MAIN_URL } from "./utils/EnvVariable";
-
+import React, { useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./shimmer/Shimmer";
 import { Link } from "react-router-dom";
+import useRestaurants from "./utils/useRestaurants";
+import useOnline from "./utils/useOnline.js";
 
 const ResList = () => {
-    const [restaurants, setRestaurants] = useState([]);
-    const [filteredRestaurants, setFilteredRestaurants] = useState([])
-
+    const { restaurants, filteredRestaurants, setFilteredRestaurants, setRestaurants } = useRestaurants()
     const [searchText, setSearchText] = useState('')
-
-    async function fetchData() {
-
-        const response = await fetch(MAIN_URL);
-        const jsonResp = await response.json();
-
-
-        setRestaurants(jsonResp?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredRestaurants(jsonResp?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    }
-
-    useEffect(() => {
-        fetchData()
-    }, [])
-
+    const online = useOnline()
     function topRated(restaurants) {
-
         const filteredRestaurants = restaurants.filter((restaurant) => {
-
             return restaurant.info.avgRating > 4
         })
-        setRestaurants(filteredRestaurants)
+        setFilteredRestaurants(filteredRestaurants)
     }
 
     function filterRestaurants() {
@@ -44,21 +26,19 @@ const ResList = () => {
 
     }
 
+    if(!online)return <h1>Something went wrong please check your connection</h1>;
     return restaurants.length === 0 ? <Shimmer /> : (
         <div className="res-list">
             <div className="features">
-
                 <input type="text" placeholder="Search Here" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
                 <button onClick={() => {
                     filterRestaurants()
                 }}>Search</button>
-
                 <button onClick={() => topRated(restaurants)}>Top Rated Restaurants</button>
-
             </div>
             <div className="resCards">
                 {
-                    filteredRestaurants.map(restaurant => <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}> <RestaurantCard  resCard={restaurant} /> </Link>)
+                    filteredRestaurants.map(restaurant => <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}> <RestaurantCard resCard={restaurant} /> </Link>)
                 }
             </div>
         </div>
