@@ -11,19 +11,17 @@ const useRestaurants = () => {
     }, [])
 
     async function fetchData() {
-
         const response = await fetch(MAIN_URL);
         const jsonResp = await response.json();
 
-
-        setRestaurants(jsonResp?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredRestaurants(jsonResp?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setRestaurants(jsonResp?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+      
+        setFilteredRestaurants(jsonResp?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     }
 
+    
 
     return {restaurants, filteredRestaurants, setRestaurants, setFilteredRestaurants}
-
-
 
 }
 

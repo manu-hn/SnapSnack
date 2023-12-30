@@ -1,22 +1,40 @@
-const BottomCards=({itemCards})=>{
-    return (
-        <div className="menu">
-            <main className='main-div'>
-                    {
-                        itemCards.map(res => {
-                            return (
-                                <div key={res.card.info.id} className='meal-detail'>
-                                    <h3>{res.card.info.name}</h3>
-                                    <p>{res.card.info.defaultPrice ? " " + res.card.info.defaultPrice / 100 : null}</p>
-                                    <h5>{res.card.info.category}</h5>
-                                    <p>{res.card.info.name}</p>
-                                </div>
-                            )
+import { useEffect, useState } from "react";
+import VegOnly from "./VegOnly";
+import Shimmer from "../../shimmer/Shimmer";
+import SectionCard from "./SectionCard";
 
-                        })
-                    }
-                </main>
+const BottomCards = ({ itemCards }) => {
+    const [menuList, setMenuList] = useState(null);
+    const [vegList, setVegList] = useState(null);
+
+    useEffect(() => {
+        menuCards()
+    }, [])
+
+    function menuCards() {
+        const data = itemCards.map((menu) => menu).filter(items => {
+            return items.card.card.itemCards
+        })
+        setMenuList(data);
+    }
+
+    console.log(itemCards);
+
+
+
+
+    if (menuList === null) return <Shimmer />
+
+    return (
+        <div className="w-full flex flex-col items-center justify-center">
+
+            {
+                menuList.map(display => {
+                    return <SectionCard key={display.card.card.title} listInfo={display.card.card} />
+            })
+            }
         </div>
+
     )
 }
 

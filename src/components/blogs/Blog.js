@@ -4,8 +4,7 @@ import UserClass from '../nav-component/UserClass'
 const Blog = () => {
   return (
     <div>
-
-      <UserClass />
+Hello
     </div>
   )
 }
