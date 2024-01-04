@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import useMenuCard from '../utils/useMenuCard';
 import TopMenu from './cards/TopMenu';
 import BottomCards from './cards/BottomCards';
-import { useEffect, useState } from 'react';
+
 
 
 const MenuCard = () => {

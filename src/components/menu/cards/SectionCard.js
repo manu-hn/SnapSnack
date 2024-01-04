@@ -4,24 +4,27 @@ import { IMG_API, } from "../../utils/EnvVariable";
 
 
 
-const SectionCard = ({ listInfo }) => {
+const SectionCard = ({ listInfo, isSectionVisible, setShowIndex }) => {
+
     const { title, itemCards } = listInfo
     const [vegItems, setVegItems] = useState(itemCards);
-    const [isSecondDivVisible, setIsSecondDivVisible] = useState(true);
 
-    const handleFirstDivClick = () => {
-        // Toggle the visibility of the second div
-        setIsSecondDivVisible(!isSecondDivVisible);
+    const handleVisibility = () => {
+        // Toggle the visibility of the div
+        setShowIndex()
     };
+
+   
 
     return (
         <>
+          
             <div className="w-full px-8 mt-4">
-                <div className="flex justify-between px-4 bg-gray-300 bg-opacity-55 py-2 cursor-pointer" onClick={handleFirstDivClick}>
+                <div className="flex justify-between px-4 bg-gray-300 bg-opacity-55 py-2 cursor-pointer" onClick={handleVisibility}>
                     <h6 className="text-xl font-bold text-black">{title} ({vegItems.length})</h6>
                     <span className="text-2xl">⬇️</span>
                 </div>
-                {isSecondDivVisible && (
+                {isSectionVisible && (
                     <div>
                         {
                             vegItems.map((cuisine) => {

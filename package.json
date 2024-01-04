@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/manu-hn/SnapSnack#readme",
   "devDependencies": {
+    "buffer": "^6.0.3",
     "parcel": "^2.10.3",
     "postcss": "^8.4.32",
     "process": "^0.11.10",
@@ -35,6 +36,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^1.6.3",
     "cors": "^2.8.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
