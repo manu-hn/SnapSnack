@@ -15,7 +15,7 @@ const RestaurantCard = ({ resCard }) => {
             </div>
             <div className="description mt-2 overflow-hidden">
                 <h4 className="font-bold line-clamp-1">{name}</h4>
-                <p className="text-gray-500 text-sm font-bold">  {avgRating} . {slaString}</p>
+                <p className="text-gray-500 text-sm font-bold">  {avgRating}⭐ . {slaString}</p>
                 <h4 className="text-gray-500 text-sm w-[100%] line-clamp-1">{cuisines.join(', ')}</h4>
                 <h4 className="text-gray-500 text-sm line-clamp-1">{areaName}</h4>
             </div>

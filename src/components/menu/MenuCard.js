@@ -28,11 +28,6 @@ const MenuCard = () => {
 
         </div>
     )
-
-
-
-
-
 }
 
 export default MenuCard;

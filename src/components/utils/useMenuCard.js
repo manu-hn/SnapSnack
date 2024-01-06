@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { MENU_URL } from "../utils/EnvVariable"
+import { MENU_URL } from "../utils/EnvVariable";
+import axios from "axios";
 
 const useMenuCard = (resID) => {
 
@@ -11,15 +12,15 @@ const useMenuCard = (resID) => {
     }, [])
 
     async function fetchMenu() {
-        const menuData = await fetch(MENU_URL + resID)
-        const json = await menuData.json();
+        const axiosMenu = await axios.get(MENU_URL + resID);
        
-        setResMenu(json.data)
+        setResMenu(axiosMenu.data.data);
+       
     }
 
-    
 
-    
+
+
 
     return resMenu;
 }

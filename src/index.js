@@ -8,7 +8,7 @@ import Error from "./components/error/Error.js";
 import ResList from "./components/ResList.js";
 import MenuCard from "./components/menu/MenuCard.js";
 import Blog from "./components/blogs/Blog.js";
-
+import Cart from "./components/cart/Cart.js";
 
 
 
@@ -36,8 +36,12 @@ const rootRouter = createBrowserRouter([
                 element : <Blog />
             },
             {
-                path : 'restaurant/:resID',
+                path : '/restaurant/:resID',
                 element : <MenuCard />
+            },
+            {
+                path : "/cart",
+                element : <Cart />
             }
 
         ],

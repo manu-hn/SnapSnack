@@ -5,7 +5,7 @@ import SectionCard from "./SectionCard";
 
 const BottomCards = ({ itemCards }) => {
     const [menuList, setMenuList] = useState(null);
-    const [showIndex, setShowIndex]=useState(null);
+    // const [showIndex, setShowIndex]=useState(null);
 
     useEffect(() => {
         menuCards()
@@ -20,14 +20,12 @@ const BottomCards = ({ itemCards }) => {
 
     if (menuList === null) return <Shimmer />
     return (
-        <div className="w-full flex flex-col items-center justify-center">
+        <div className="w-full flex border border-black flex-col items-center justify-center">
     
             {
                 menuList.map((display, index) => {
                     return <SectionCard key={display.card.card.title}
-                     listInfo={display.card.card}
-                     isSectionVisible={index===showIndex ? true : false}
-                     setShowIndex={()=>setShowIndex(index)}
+                     listInfo={display.card.card}                     
                       />
                 })
             }
