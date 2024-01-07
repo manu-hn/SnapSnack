@@ -6,7 +6,7 @@ const RestaurantCard = ({ resCard }) => {
     const { name, cloudinaryImageId, areaName, cuisines, costForTwo, avgRating, sla: { deliveryTime, slaString } } = resCard.info
 
     return (
-        <div className="w-64 h-[17.25rem] bg-gray-50 m-4 p-4 rounded-lg transition-transform transform hover:scale-[95%] hover:delay-[200]">
+        <div className="w-72  h-72 bg-gray-50 m-1 p-4 rounded-lg transition-transform transform hover:scale-[95%] hover:delay-[200]">
 
             <div className="flex flex-col justify-center items-center ">
                 <img className="w-[100%] shadow-lg h-36 rounded-lg" src={`${IMG_API}${cloudinaryImageId}`} alt="" />

@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { logoutUser } from "./store/userLoginSlice.js";
 import Logo from "../images/MainLogo.png"
 import useOnline from "./utils/useOnline";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = () => {
-    const [btnName, setBtnName] = useState('Login');
+    const dispatch = useDispatch();
     const online = useOnline();
     const cartItems = useSelector((store) => store.cart.items);
-    console.log("NavbaR", cartItems)
-
+    const userInfo = useSelector((store) => store.userInfo.isLoggedIn)
+   
     function colorGiver() {
         if (online) {
             return "green"
         }
         return "red"
+    }
+    const logoutHandler = () => {
+        dispatch(logoutUser());
     }
 
     return (
@@ -30,14 +33,10 @@ const NavBar = () => {
                         {/* shortcut is windows key + semicolon */}
                         <li className="mx-4 "> <Link to={'/'}>Home</Link> </li>
                         <li className="mx-4 "> <Link to={'/about'}>About</Link> </li>
-                        <li className="mx-4 "> <Link to={'/blog'}>Blog</Link> </li>
+                        <li className="mx-4 "> <Link to={'/recipe'}>Recipes</Link> </li>
                         <li className="mx-4 "> <Link to={'/contact'}>Contact</Link> </li>
                         <li className="mx-4 "> <Link to={'/cart'}> 🛒{cartItems.length}</Link> </li>
-                        <li>
-                            <button className="" onClick={() => {
-                                btnName === 'Login' ? setBtnName('Logout') : setBtnName('Login')
-                            }}>{btnName}</button>
-                        </li>
+                        <li className="mx-4"> {userInfo ? <button onClick={logoutHandler}>Logout</button> : <Link to={'/login'}>Login</Link>} </li>
                         <li className="mx-4 h-3 w-3" style={{ backgroundColor: colorGiver() }}></li>
 
                     </ul>

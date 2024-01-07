@@ -5,13 +5,17 @@ import { Link } from "react-router-dom";
 import useRestaurants from "./utils/useRestaurants";
 import useOnline from "./utils/useOnline.js";
 import BestRestaurants from "./restaurants/BestRestaurants.js";
-
+import BestOffers from "./restaurants/BestOffers.js";
+import WhatsOnYourMind from "./restaurants/WhatsOnYourMind.js";
+import {  useSelector } from "react-redux";
+import PleaseLoginToContinue from "./auth/PleaseLoginToContinue.js";
 
 const ResList = () => {
-    const { restaurants, filteredRestaurants, setFilteredRestaurants, setRestaurants, bestRestaurants, bestCuisines, exploreRes } = useRestaurants()
+    const { restaurants, resCards, filteredRestaurants, setFilteredRestaurants, bestRestaurants, bestCuisines, exploreRes } = useRestaurants()
     const [searchText, setSearchText] = useState('')
-    const online = useOnline()
-
+    const online = useOnline();
+    const useInfo=useSelector(store=>store.userInfo.isLoggedIn)
+  
     function topRated(restaurants) {
         const filteredRestaurants = restaurants.filter((restaurant) => {
             return restaurant.info.avgRating > 4
@@ -23,18 +27,16 @@ const ResList = () => {
         const filteredList = restaurants.filter((restaurant) => {
 
             return restaurant?.info?.name.toLowerCase().includes(searchText.toLowerCase())
-
         })
         setFilteredRestaurants(filteredList)
     }
 
     if (!online) return <h1>Something went wrong please check your connection</h1>;
-    return restaurants?.length === 0 ? <Shimmer /> : (
+    return useInfo ? (restaurants?.length === 0 ? <Shimmer /> : (
         <div className="w-full mt-8 flex flex-col justify-start items-center flex-wrap">
-            
-            <div className="flex w-[60%] justify-evenly">
+            <div className="flex justify-around w-[80%]">
                 <div>
-                    <input type="text" placeholder="Search Here" className="border-b-2 px-5 ml-4 border-black w-72" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
+                    <input type="text" placeholder="Search Here" className="border-b-2 outline-none px-5 ml-4 border-black w-72" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
                     <button className="ml-4 border-2 px-4 rounded" onClick={() => {
                         filterRestaurants()
                     }}>Search</button>
@@ -43,11 +45,17 @@ const ResList = () => {
                     <button onClick={() => topRated(restaurants)} className="border-2 px-4">Top Rated Restaurants</button>
                 </div>
             </div>
-            <div>
-                <h1>Hello</h1>
-            
+            <div className="mb-6">
+                <BestOffers />
             </div>
-            <div className="flex flex-wrap justify-start w-[80%] border">
+            <div className="mb-8">
+            <WhatsOnYourMind />
+            </div>
+            <div className="w-[80%] mt-12 mb-6">
+                <h1 className="text-left font-bold text-2xl">{resCards[3]?.card?.card?.title}</h1>
+            </div>
+            <div className="flex flex-wrap justify-around w-[80%] border">
+
                 {
                     filteredRestaurants.map(restaurant => <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}> <RestaurantCard resCard={restaurant} /> </Link>)
                 }
@@ -56,7 +64,7 @@ const ResList = () => {
             <BestRestaurants bestRestaurants={bestCuisines} />
             <BestRestaurants bestRestaurants={exploreRes} />
         </div>
-    )
+    )) : (<PleaseLoginToContinue />)
 }
 
 export default ResList;

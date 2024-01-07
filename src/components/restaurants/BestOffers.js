@@ -1,22 +1,33 @@
 import useRestaurants from "../utils/useRestaurants";
-import { responsive } from "../utils/EnvVariable";
-import Shimmer from "../shimmer/Shimmer";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import BannerShimmer from "../shimmer/BannerShimmer.js";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { BANNER_URL } from "../utils/EnvVariable";
+import { settings } from "../utils/EnvVariable";
+
 
 const BestOffers = () => {
     const { resCards } = useRestaurants();
 
 
-    if(resCards.length===0)return <Shimmer />
+
+    if (resCards.length === 0) return <BannerShimmer />
     const { info } = resCards[0]?.card?.card?.gridElements?.infoWithStyle;
-    console.log("Inside Best ", resCards);
-    console.log("Inside Best Info", info);
+    
     return (
         <>
-            <Carousel responsive={responsive}>
-                
-            </Carousel>
+            <div className="w-[80vw] h-[20rem] mb-3 mt-4">
+                <h2 className="my-6 font-bold text-2xl"> Best offers for you </h2>
+                <Slider className=" flex" {...settings}>
+
+                    {
+                        info.map((banner) => (<div key={banner.id} className="w-[20rem]">
+                            <img className="w-[28rem] mx-2" src={BANNER_URL + banner.imageId} alt="" />
+                        </div>))
+                    }
+                </Slider>
+            </div>
         </>
     )
 }

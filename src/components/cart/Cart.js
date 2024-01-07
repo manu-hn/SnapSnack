@@ -1,23 +1,22 @@
 import { useSelector } from "react-redux";
 import CartItems from "./CartItems.js";
 import NoItemsInCart from "./NoItemsInCart.js";
-
+import PleaseLoginToContinue from "../auth/PleaseLoginToContinue.js"
 const Cart = () => {
 
     const cartItems = useSelector((store) => store.cart.items);
-
-
+    const userInfo = useSelector((store) => store.userInfo.isLoggedIn);
+console.log("cart",userInfo)
     if (cartItems.length === 0) return <NoItemsInCart />;
-
     const totalPrice = cartItems.reduce((accumulator, currentItem) => {
         return accumulator + currentItem.card.info.price;
     }, 0);
-    return (
+    return  (
         <div className=" w-full items-center flex flex-col">
             <div className="w-full">
                 {
                     cartItems.map((item, index) => {
-                        console.log("Checking for name ", item)
+                        
                         return <CartItems index={index} key={item.card.info.id} item={item} />
                     })
                 }
@@ -28,7 +27,7 @@ const Cart = () => {
                 </span>
             </div>
         </div>
-    )
+    ) 
 }
 
 export default Cart;

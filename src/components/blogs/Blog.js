@@ -1,24 +1,59 @@
-import React from 'react'
-import UserClass from '../nav-component/UserClass'
-import axios from 'axios'
-
-const apiKey = `39d9cca99be24f8410b1b6df90ed2ee0	—`
-const appId = `8f56ffcd`
-const apiUrl = `https://api.edamam.com/api/recipes/v2?q=${'coffee'}&app_id=${appId}&app_key=${apiKey}`;
+import React, { useState } from 'react'
+import RecipeCard from './RecipeCard';
+import useRecipes from '../utils/useRecipes';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import PleaseLoginToContinue from '../auth/PleaseLoginToContinue';
 
 const Blog = () => {
+  const {foodBasedOnCountries, setTypeOfArea}= useRecipes();
+  const userInfo=useSelector((store)=>store.userInfo.isLoggedIn);
 
-  const fetchRecipes =async () => {
-    const data =await axios.get(apiUrl)
-    console.log(data)
+  function handleTypeOfFoodChange(e){
+    
+    setTypeOfArea(e.target.value);
   }
-  return (
-    <div>
-      <button onClick={() => {
-        fetchRecipes()
-      }}>Fetch</button>
+ 
+  return userInfo ? (
+    <div className='flex flex-col justify-center items-center w-full'>
+     
+      <div className='m-4'>
+             
+        <span>
+          <select className='w-72 bg-gray-200 bg-opacity-50 px-3 py-1 rounded-md' onChange={handleTypeOfFoodChange} name="" id="">
+            <option value="Indian">Indian</option>
+            <option value="Russian">Russian</option>
+            <option value="French">French</option>
+            <option value="American">American</option>
+            <option value="British">British</option>
+            <option value="Canadian">Canadian</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Croatian">Croatian</option>
+            <option value="Dutch">Dutch</option>
+            <option value="Egyptian">Egyptian</option>
+            <option value="Filipino">Filipino</option>
+            <option value="Greek">Greek</option>
+            <option value="Irish">Irish</option>
+            <option value="Italian">Italian</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Jamaican">Jamaican</option>
+            <option value="Kenyan">Kenyan</option>
+            <option value="Malaysian">Malaysian</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Turkish">Turkish</option>
+            <option value="Unknown">Others</option>
+          </select>
+        </span>
+      </div>
+
+      <div className='flex w-4/5 flex-wrap justify-evenly'>
+        {
+          foodBasedOnCountries?.map(eachCountryFoodStyle=><Link key={eachCountryFoodStyle.idMeal} to={`/recipe/${eachCountryFoodStyle.idMeal}`}><RecipeCard  eachCountryFoodStyle={eachCountryFoodStyle} /></Link> )
+        }
+      </div>
     </div>
-  )
+  ) : (<PleaseLoginToContinue />)
 }
 
 export default Blog
