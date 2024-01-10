@@ -1,10 +1,10 @@
 
 const BannerShimmer=()=>{
     return(
-        <div>
-            <span className="w-[28rem] h-[36rem] bg-gray-200 m-8"></span>
-            <span className="w-[28rem] h-[36rem] bg-gray-200 m-8"></span>
-            <span className="w-[28rem] h-[36rem] bg-gray-200 m-8"></span>
+        <div className="flex ">
+            <div className="w-[28rem] h-[15rem] bg-gray-200 m-3"></div>
+            <div className="w-[28rem] h-[15rem] bg-gray-200 m-3"></div>
+            <div className="w-[28rem] h-[15rem] bg-gray-200 m-3"></div>
         </div>
     )
 }

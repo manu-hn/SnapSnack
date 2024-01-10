@@ -12,7 +12,8 @@ const BestOffers = () => {
 
 
 
-    if (resCards.length === 0) return <BannerShimmer />
+    if (resCards.length === 0) return <BannerShimmer />;
+    
     const { info } = resCards[0]?.card?.card?.gridElements?.infoWithStyle;
     
     return (
@@ -22,7 +23,7 @@ const BestOffers = () => {
                 <Slider className=" flex" {...settings}>
 
                     {
-                        info.map((banner) => (<div key={banner.id} className="w-[20rem]">
+                        info.map((banner) => (<div key={banner.id} className="w-[20rem] cursor-pointer">
                             <img className="w-[28rem] mx-2" src={BANNER_URL + banner.imageId} alt="" />
                         </div>))
                     }

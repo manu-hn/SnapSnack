@@ -27,8 +27,7 @@ const useRestaurants = () => {
         setBestRestaurants(response.data.data.cards[7].card.card);
         setBestCuisines(response.data.data.cards[8].card.card);
         setExploreRes(response.data.data.cards[9].card.card);
-       
-        console.log("useRes",response.data.data.cards);
+       console.log(response.data.data)
     }
 
     return { restaurants, filteredRestaurants, setRestaurants, setFilteredRestaurants, bestRestaurants, bestCuisines, exploreRes, resCards }

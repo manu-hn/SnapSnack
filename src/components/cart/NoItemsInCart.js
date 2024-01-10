@@ -2,6 +2,7 @@ import BackToHome from "../assets/BackToHome.js";
 import EmptyCart from "../../images/Cart Empty.png"
 
 const NoItemsInCart = () => {
+    
     return (
         <div className="w-full h-[80vh] flex flex-col items-center justify-start">
             <span>

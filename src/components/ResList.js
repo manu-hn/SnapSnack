@@ -9,6 +9,7 @@ import BestOffers from "./restaurants/BestOffers.js";
 import WhatsOnYourMind from "./restaurants/WhatsOnYourMind.js";
 import {  useSelector } from "react-redux";
 import PleaseLoginToContinue from "./auth/PleaseLoginToContinue.js";
+import TopRestaurants from "./restaurants/TopRestaurants.js";
 
 const ResList = () => {
     const { restaurants, resCards, filteredRestaurants, setFilteredRestaurants, bestRestaurants, bestCuisines, exploreRes } = useRestaurants()
@@ -33,17 +34,15 @@ const ResList = () => {
 
     if (!online) return <h1>Something went wrong please check your connection</h1>;
     return useInfo ? (restaurants?.length === 0 ? <Shimmer /> : (
-        <div className="w-full mt-8 flex flex-col justify-start items-center flex-wrap">
+        <div className="w-full mt-8 flex flex-col justify-start items-center flex-wrap container">
             <div className="flex justify-around w-[80%]">
                 <div>
                     <input type="text" placeholder="Search Here" className="border-b-2 outline-none px-5 ml-4 border-black w-72" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
-                    <button className="ml-4 border-2 px-4 rounded" onClick={() => {
+                    <button className="ml-4 border-2 px-4 rounded bg-" onClick={() => {
                         filterRestaurants()
                     }}>Search</button>
                 </div>
-                <div>
-                    <button onClick={() => topRated(restaurants)} className="border-2 px-4">Top Rated Restaurants</button>
-                </div>
+              
             </div>
             <div className="mb-6">
                 <BestOffers />
@@ -51,10 +50,13 @@ const ResList = () => {
             <div className="mb-8">
             <WhatsOnYourMind />
             </div>
+            <div className="mb-14">
+                <TopRestaurants />
+            </div>
             <div className="w-[80%] mt-12 mb-6">
                 <h1 className="text-left font-bold text-2xl">{resCards[3]?.card?.card?.title}</h1>
             </div>
-            <div className="flex flex-wrap justify-around w-[80%] border">
+            <div className="flex flex-wrap justify-around w-[80%]">
 
                 {
                     filteredRestaurants.map(restaurant => <Link key={restaurant.info.id} to={`/restaurant/${restaurant.info.id}`}> <RestaurantCard resCard={restaurant} /> </Link>)

@@ -20,7 +20,7 @@ const BottomCards = ({ itemCards }) => {
 
     if (menuList === null) return <Shimmer />
     return (
-        <div className="w-full flex border border-black flex-col items-center justify-center">
+        <div className="w-full flex flex-col items-center justify-center">
     
             {
                 menuList.map((display, index) => {

@@ -15,13 +15,13 @@ const BestRestaurants = ({ bestRestaurants }) => {
         <h1 className="font-bold text-2xl my-3 mx-4">{title}</h1>
         <section className="flex flex-wrap justify-evenly">
           {brands.slice(0, displayCount).map((brand) => (
-            <div key={brand.text} className="border rounded-xl m-2 px-2 py-3 w-[22%] text-center overflow-hidden">
+            <div key={brand.text} className="border rounded-xl m-2 px-2 py-3 w-[22%] text-center overflow-hidden cursor-pointer">
               <h1 className="line-clamp-1 text-gray-700 text-base font-medium">{brand.text}</h1>
             </div>
           ))}
 
           {displayCount < brands.length && (
-            <div className="border rounded-xl m-2 px-2 py-3 w-[22%] text-center overflow-hidden">
+            <div className="border rounded-xl m-2 px-2 py-3 w-[22%] text-center overflow-hidden cursor-pointer">
               <button onClick={handleShowMore} className="show-more-button">
                 Show More ⬇️
               </button>

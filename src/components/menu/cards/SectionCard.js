@@ -16,7 +16,7 @@ const SectionCard = ({ listInfo, }) => {
     return (
         <>
             <div className="w-full px-8 mt-4">
-                <div className="flex justify-between px-4 bg-gray-300 bg-opacity-55 py-2 cursor-pointer" onClick={handleVisibility}>
+                <div className="flex justify-between px-4 bg-gray-100 bg-opacity-55 py-2 cursor-pointer" onClick={handleVisibility}>
                     <h6 className="text-xl font-bold text-black">{title} ({itemCards.length})</h6>
                     <span className="text-2xl">⬇️</span>
                 </div>
@@ -47,7 +47,7 @@ const SectionCard = ({ listInfo, }) => {
                         }
                     </div>
                 )}
-                <div className='w-full h-4 bg-gray-300 mt-8'>
+                <div className='w-full h-4 bg-gray-200 mt-8'>
 
                 </div>
             </div>
