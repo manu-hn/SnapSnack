@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 
 const TopRestaurants = () => {
 
-    const { resCards } = useRestaurants();
-
+    const { topResChains } = useRestaurants();
+   
     const settings= {
         dots: true,
         infinite: false,
@@ -48,12 +48,13 @@ const TopRestaurants = () => {
         ]
       };
 
-      if(resCards.length===0)return <WhatsOnYourMindShimmer />
-    const { restaurants } = resCards[5]?.card?.card?.gridElements?.infoWithStyle
-    
+      if(!topResChains)return <WhatsOnYourMindShimmer />
+    const {restaurants}=topResChains[1]?.card?.card?.gridElements?.infoWithStyle
+    const {title}=topResChains[0]?.card?.card?.header
     return (
         <div className='w-[80vw] h-[10rem] mt-14 mb-24'>
-            <h2 className='text-left font-bold text-2xl'>{resCards[2]?.card?.card?.header?.title}</h2>
+         
+            <h2 className='text-left font-bold text-2xl'>{title}</h2>
             <Slider {...settings}>
                 {restaurants?.map((restaurant) => (<Link to={`/restaurant/${restaurant.info.id}`} key={restaurant.info.id}>
                     <RestaurantCard resCard={restaurant} />

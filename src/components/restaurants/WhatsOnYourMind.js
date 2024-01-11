@@ -6,8 +6,8 @@ import Slider from "react-slick";
 import { WHATS_ON_YOUR_MIND_URL } from "../utils/EnvVariable";
 
 const WhatsOnYourMind = () => {
-    const { resCards } = useRestaurants();
-
+    const { whatsOnYourMind } = useRestaurants();
+    
     const settings= {
         dots: true,
         infinite: false,
@@ -43,12 +43,14 @@ const WhatsOnYourMind = () => {
         ]
       };
 
-    if (resCards.length === 0) return <WhatsOnYourMindShimmer />
-    const { info } = resCards[1]?.card?.card?.gridElements?.infoWithStyle;
+    if (!whatsOnYourMind) return <WhatsOnYourMindShimmer />
+    const {info} = whatsOnYourMind[0]?.card?.card?.gridElements?.infoWithStyle;
+    const {title} = whatsOnYourMind[0]?.card?.card?.header;
+    
     return (
         <>
             <div className="w-[80vw] h-[10rem] mb-3">
-                <h2 className="my-2 font-bold text-2xl"> {resCards[1].card?.card?.header.title}</h2>
+                <h2 className="my-2 font-bold text-2xl"> {title}</h2>
                 <Slider className="" {...settings}>
                     {
                         info.map(item=>(<div key={item.id} className="cursor-pointer">
