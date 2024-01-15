@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import useRestaurants from '../utils/useRestaurants';
 import RestaurantCard from '../RestaurantCard';
-import WhatsOnYourMindShimmer from '../shimmer/WhatsOnYourMindShimmer';
+import Shimmer from '../shimmer/Shimmer.js';
 import { Link } from 'react-router-dom';
 
 
@@ -48,7 +48,7 @@ const TopRestaurants = () => {
         ]
       };
 
-      if(!topResChains)return <WhatsOnYourMindShimmer />
+      if(topResChains.length===0)return <Shimmer />
     const {restaurants}=topResChains[1]?.card?.card?.gridElements?.infoWithStyle
     const {title}=topResChains[0]?.card?.card?.header
     return (

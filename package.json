@@ -2,11 +2,11 @@
   "name": "snapsnack",
   "version": "1.0.0",
   "description": "SnapSnack a food delivery application like Swiggy (or a clone of Swiggy )",
-  "main": "index.js",
+ 
   "scripts": {
     "test": "jest",
     "start": "npx parcel public/index.html",
-    "build" : "npx parcel build src/index.js"
+    "build" : "npx parcel build public/index.html"
   },
   "repository": {
     "type": "git",

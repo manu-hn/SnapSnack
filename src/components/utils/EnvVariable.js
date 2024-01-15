@@ -4,6 +4,7 @@ export const IMG_API = `https://media-assets.swiggy.com/swiggy/image/upload/fl_l
 
 export const MAIN_BEFORE_LAT=`https://www.swiggy.com/dapi/restaurants/list/v5?lat=`;
 export const MAIN_URL_MID = `&lng=`
+
 export const MAIN_AFTER_LON= `&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
 export const MAIN_URL = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.971599&lng=77.594566&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
 

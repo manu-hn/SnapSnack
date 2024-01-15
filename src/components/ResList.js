@@ -17,12 +17,12 @@ const ResList = () => {
     const online = useOnline();
     const useInfo = useSelector(store => store.userInfo.isLoggedIn)
 
-    function topRated(restaurants) {
-        const filteredRestaurants = restaurants.filter((restaurant) => {
-            return restaurant.info.avgRating > 4
-        })
-        setFilteredRestaurants(filteredRestaurants)
-    }
+    // function topRated(restaurants) {
+    //     const filteredRestaurants = restaurants.filter((restaurant) => {
+    //         return restaurant.info.avgRating > 4
+    //     })
+    //     setFilteredRestaurants(filteredRestaurants)
+    // }
 
     function filterRestaurants() {
         const filteredList = restaurants.filter((restaurant) => {

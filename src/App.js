@@ -7,7 +7,7 @@ import appStore from "./components/store/appStore";
 const App = () => {
     return (
         <Provider store={appStore}>
-            <div className="">
+            <div className="container">
                 <NavBar />
                 <Outlet />
             </div>
